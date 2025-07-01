@@ -49,7 +49,7 @@
         /* Estilo para botões selecionados */
         .filter-btn.selected[data-category="perfume"] {
             background-color: #ccc1ff !important;
-            color: white !important;
+            color: #1f2937 !important;
         }
         .filter-btn.selected[data-category="cream"] {
             background-color: #fff386 !important;
@@ -67,7 +67,7 @@
 </head>
 <body class="font-sans bg-gray-50">
     <!-- Header -->
-    <header class="gradient-bg text-white shadow-md">
+    <header class="gradient-bg text-white shadow-md fixed w-full top-0 left-0 z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
@@ -75,10 +75,10 @@
                     <h1 class="text-2xl font-size">Lumière</h1>
                 </div>
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" class="hover:text-gray-200">Início</a>
-                    <a href="#products" class="hover:text-gray-200">Produtos</a>
-                    <a href="#about" class="hover:text-gray-200">Sobre</a>
-                    <a href="#contact" class="hover:text-gray-200">Contato</a>
+                    <a href="#" class="hover:text-pink-600">Início</a>
+                    <a href="#products" class="hover:text-pink-700">Produtos</a>
+                    <a href="#about" class="hover:text-pink-800">Sobre</a>
+                    <a href="#contact" class="hover:text-pink-900">Contato</a>
                 </div>
                 <div class="flex items-center space-x-4">
                     <button id="search-btn" class="hover:text-gray-200">
@@ -101,6 +101,8 @@
                 <a href="#about" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Sobre</a>
                 <a href="#contact" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Contato</a>
             </div>
+        </div>
+    </header>
             
             <!-- Search Bar -->
             <div id="search-bar" class="hidden mt-4">
@@ -425,7 +427,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; © 2025 Jhony Wictor Santos. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Jhony Wictor Santos. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
