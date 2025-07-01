@@ -163,21 +163,22 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-6xl font-bold text-center mb-12">Nossos Produtos</h2>
+    <section id="products" class="py-16 bg-cover bg-center bg-no-repeat" style="background-image: url('src/images/detalhes/TelaDeFundo5.jpg')">
+            <div class="container mx-auto px-4">
+                <div class="bg-white bg-opacity-50 p-8 rounded-lg">
+                    <h2 class="text-6xl font-bold text-center text-[#6b455b]  mb-14">Nossos Produtos</h2>
             
             <!-- Filters -->
             <div class="mb-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <div class="flex space-x-2 overflow-x-auto pb-2 w-full md:w-auto">
                     <button class="filter-btn px-4 py-2 rounded-full bg-pink-500 text-white" data-category="all">Todos</button>
-                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-[#ccc1ff] hover:text-white" data-category="perfume">Perfumes</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-[#ccc1ff] hover:text-black" data-category="perfume">Perfumes</button>
                     <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-[#fff386] hover:text-gray-800" data-category="cream">Cremes</button>
                     <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-[#bd5584] hover:text-white" data-category="makeup">Maquiagem</button>
                     <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-[#8f9e45] hover:text-white" data-category="selfcare">Auto-Cuidado</button>
                 </div>
                 <div class="w-full md:w-auto">
-                    <select id="sort-select" class="border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <select id="sort-select" class="border border-pink-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-600">
                         <option value="default">Ordenar por</option>
                         <option value="price-low">Preço: menor para maior</option>
                         <option value="price-high">Preço: maior para menor</option>
@@ -1213,7 +1214,31 @@
                 "reviews": 328,
                 "description": "Kit especial com Shampoo e Condicionador Aquaviva em embalagem presenteável. Fórmulas botânicas para cabelos saudáveis, hidratados e com brilho natural.",
                 "details": "Contém: 1 Shampoo (200ml) + 1 Condicionador (200ml) | Embalagem personalizada | Fórmulas com hibisco | Uso diário | Dermatologicamente testado | Indicado para todos os tipos de cabelo"
-            }
+            },
+            {
+                "id": 21,
+                "name": "Borra de Café Hidratante",
+                "price": 99.90,
+                "oldPrice": 156.90,
+                "category": "cream",
+                "image": "src/images/cremes/BorraDeCafé.png",
+                "rating": 4.91,
+                "reviews": 198,
+                "description": "Hidratante corporal sofisticado com aroma envolvente de café, avelã e quinoa. Proporciona hidratação profunda com toque seco e fórmula ultraleve.",
+                "details": "200ml | Textura leve e não oleosa | Rápida absorção | Dermatologicamente testado | Uso corporal diário"
+            },
+            {
+                "id": 22,
+                "name": "Noturno",
+                "price": 94.90,
+                "oldPrice": 119.90,
+                "category": "cuidados faciais",
+                "image": "src/images/cremes/Noturno.png",
+                "rating": 4.96,
+                "reviews": 237,
+                "description": "Creme facial premium com textura leve e sensorial aveludado. Enriquecido com acerola, amora e sérum concentrado, atua na uniformização do tom da pele e redução de manchas escuras durante a noite.",
+                "details": "Pote rosado de 50g | Fórmula com extrato de acerola, amora e sérum clareador | Textura ultraleve e rápida absorção | Dermatologicamente testado | Uso facial noturno | Não comedogênico"
+                }
 
 
         ];
