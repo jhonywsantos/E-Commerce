@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière - Perfumaria & Auto-Cuidado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9d5e5 0%, #e2c1e0 100%);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .star-rating {
+            color: #fbbf24;
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ec4899;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .cart-item-enter {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .cart-item-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 300ms ease-in;
+        }
+        .cart-item-exit {
+            opacity: 1;
+        }
+        .cart-item-exit-active {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 300ms ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-spa text-2xl"></i>
+                    <h1 class="text-2xl font-bold">Lumière</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="hover:text-gray-200">Início</a>
+                    <a href="#products" class="hover:text-gray-200">Produtos</a>
+                    <a href="#about" class="hover:text-gray-200">Sobre</a>
+                    <a href="#contact" class="hover:text-gray-200">Contato</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="search-btn" class="hover:text-gray-200">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button id="cart-btn" class="relative hover:text-gray-200">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button class="md:hidden" id="menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Início</a>
+                <a href="#products" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Produtos</a>
+                <a href="#about" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Sobre</a>
+                <a href="#contact" class="block py-2 hover:bg-white hover:bg-opacity-20 px-2 rounded">Contato</a>
+            </div>
+            
+            <!-- Search Bar -->
+            <div id="search-bar" class="hidden mt-4">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar produtos..." class="w-full py-2 px-4 pr-10 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <button class="absolute right-3 top-2 text-gray-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Descubra sua beleza natural</h2>
+                <p class="text-xl mb-6">Produtos de perfumaria e cuidados pessoais feitos com ingredientes naturais e amor.</p>
+                <div class="flex space-x-4">
+                    <a href="#products" class="bg-white text-pink-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition">Comprar Agora</a>
+                    <a href="#about" class="border border-white px-6 py-3 rounded-full font-medium hover:bg-white hover:bg-opacity-20 transition">Saiba Mais</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Produtos de beleza" class="rounded-lg shadow-xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="text-4xl text-pink-500 mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Ingredientes Naturais</h3>
+                    <p class="text-gray-600">Produtos formulados com ingredientes naturais e livres de crueldade animal.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="text-4xl text-pink-500 mb-4">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Qualidade Premium</h3>
+                    <p class="text-gray-600">Nossos produtos são testados e aprovados por dermatologistas.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="text-4xl text-pink-500 mb-4">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Entrega Rápida</h3>
+                    <p class="text-gray-600">Entregamos em todo o Brasil com frete grátis para compras acima de R$150.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Nossos Produtos</h2>
+            
+            <!-- Filters -->
+            <div class="mb-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex space-x-2 overflow-x-auto pb-2 w-full md:w-auto">
+                    <button class="filter-btn px-4 py-2 rounded-full bg-pink-500 text-white" data-category="all">Todos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-gray-100" data-category="perfume">Perfumes</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-gray-100" data-category="cream">Cremes</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-gray-100" data-category="makeup">Maquiagem</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-white hover:bg-gray-100" data-category="selfcare">Auto-Cuidado</button>
+                </div>
+                <div class="w-full md:w-auto">
+                    <select id="sort-select" class="border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        <option value="default">Ordenar por</option>
+                        <option value="price-low">Preço: menor para maior</option>
+                        <option value="price-high">Preço: maior para menor</option>
+                        <option value="rating">Melhor avaliados</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold mb-6">Nossa História</h2>
+                    <p class="text-gray-600 mb-4">Fundada em 2015, a Lumière nasceu da paixão por produtos de beleza que respeitam a pele e o meio ambiente. Nossa missão é oferecer uma experiência de auto-cuidado que ilumine sua beleza natural.</p>
+                    <p class="text-gray-600 mb-6">Todos os nossos produtos são desenvolvidos com ingredientes cuidadosamente selecionados, testados dermatologicamente e livres de crueldade animal.</p>
+                    <div class="flex space-x-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-pink-500">5+</div>
+                            <div class="text-gray-500">Anos no mercado</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-pink-500">10k+</div>
+                            <div class="text-gray-500">Clientes satisfeitos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-pink-500">100+</div>
+                            <div class="text-gray-500">Produtos no catálogo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1556228578-8c2d37ba539d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Nossa equipe" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">O que nossos clientes dizem</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Adorei o perfume que comprei! O aroma é incrível e dura o dia todo. Sem dúvidas vou comprar outros produtos da Lumière."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Ana Carolina</h4>
+                            <p class="text-sm text-gray-500">São Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Os cremes hidratantes são maravilhosos! Minha pele nunca esteve tão macia. A entrega foi super rápida também."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Juliana Santos</h4>
+                            <p class="text-sm text-gray-500">Rio de Janeiro, RJ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Comprei o kit de maquiagem e amei todas as cores! A textura é ótima e não irrita minha pele sensível."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Fernanda Lima</h4>
+                            <p class="text-sm text-gray-500">Belo Horizonte, MG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Receba nossas novidades</h2>
+            <p class="mb-8 max-w-2xl mx-auto">Assine nossa newsletter e receba ofertas exclusivas, lançamentos e dicas de beleza diretamente no seu e-mail.</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Seu melhor e-mail" class="flex-grow py-3 px-4 rounded-l-full focus:outline-none text-gray-800">
+                <button class="bg-pink-600 hover:bg-pink-700 py-3 px-6 rounded-r-full font-medium">Assinar</button>
+            </div>
+            <p class="mt-4 text-sm opacity-80">Prometemos não enviar spam. Você pode cancelar a qualquer momento.</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Entre em Contato</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-xl font-semibold mb-4">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-pink-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Endereço</h4>
+                                <p class="text-gray-600">Rua das Flores, 123 - Jardim Botânico<br>Rio de Janeiro - RJ</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-pink-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Telefone</h4>
+                                <p class="text-gray-600">(21) 1234-5678</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-pink-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">E-mail</h4>
+                                <p class="text-gray-600">contato@lumiere.com.br</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-pink-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Horário de Atendimento</h4>
+                                <p class="text-gray-600">Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 13h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-4">Envie uma Mensagem</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-1">Nome</label>
+                            <input type="text" id="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-1">E-mail</label>
+                            <input type="email" id="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-1">Assunto</label>
+                            <input type="text" id="subject" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-1">Mensagem</label>
+                            <textarea id="message" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300"></textarea>
+                        </div>
+                        <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-medium">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-spa text-2xl"></i>
+                        <h3 class="text-2xl font-bold">Lumière</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Iluminando sua beleza natural com produtos de qualidade e ingredientes cuidadosamente selecionados.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sobre Nós</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Nossos Produtos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Termos de Serviço</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Minha Conta</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Minha Conta</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Histórico de Pedidos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Lista de Desejos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Newsletter</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cupons</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Formas de Pagamento</h4>
+                    <div class="grid grid-cols-3 gap-2 mb-4">
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fab fa-cc-visa text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fab fa-cc-mastercard text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fab fa-cc-amex text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fab fa-cc-paypal text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fas fa-barcode text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
+                            <i class="fas fa-money-bill-wave text-2xl"></i>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Segurança</h4>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-lock text-green-400"></i>
+                        <span class="text-sm text-gray-400">Site 100% seguro</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Lumière. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-lg font-medium text-gray-900">Seu Carrinho</h3>
+                        <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="mt-4 max-h-96 overflow-y-auto" id="cart-items">
+                        <!-- Cart items will be loaded here -->
+                        <div id="empty-cart" class="text-center py-8">
+                            <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-3"></i>
+                            <p class="text-gray-500">Seu carrinho está vazio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-col">
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span id="cart-subtotal" class="font-medium">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Frete</span>
+                            <span id="cart-shipping" class="font-medium">Calculado no checkout</span>
+                        </div>
+                        <div class="border-t pt-2 flex justify-between">
+                            <span class="font-medium">Total</span>
+                            <span id="cart-total" class="font-bold text-lg">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="coupon" class="block text-sm font-medium text-gray-700 mb-1">Cupom de desconto</label>
+                        <div class="flex">
+                            <input type="text" id="coupon" placeholder="Digite seu cupom" class="flex-grow border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                            <button id="apply-coupon" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-r-md">Aplicar</button>
+                        </div>
+                        <p id="coupon-message" class="text-sm mt-1 hidden"></p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button id="continue-shopping" class="flex-grow border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100">Continuar Comprando</button>
+                        <button id="checkout" class="flex-grow bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-md">Finalizar Compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-lg font-medium text-gray-900">Visualização Rápida</h3>
+                        <button id="close-quick-view" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="mt-4" id="quick-view-content">
+                        <!-- Product details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-lg font-medium text-gray-900">Finalizar Compra</h3>
+                        <button id="close-payment" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">Informações de Entrega</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">Nome Completo</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">Endereço</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">CEP</label>
+                                        <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Cidade</label>
+                                        <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">Telefone</label>
+                                    <input type="tel" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">Método de Pagamento</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center border rounded-md p-3 hover:border-pink-500">
+                                    <input type="radio" name="payment" id="credit-card" class="mr-3" checked>
+                                    <label for="credit-card" class="flex-grow">Cartão de Crédito</label>
+                                    <i class="fab fa-cc-visa text-2xl text-gray-500 mx-1"></i>
+                                    <i class="fab fa-cc-mastercard text-2xl text-gray-500 mx-1"></i>
+                                    <i class="fab fa-cc-amex text-2xl text-gray-500 mx-1"></i>
+                                </div>
+                                <div class="flex items-center border rounded-md p-3 hover:border-pink-500">
+                                    <input type="radio" name="payment" id="pix" class="mr-3">
+                                    <label for="pix" class="flex-grow">PIX</label>
+                                    <i class="fas fa-qrcode text-2xl text-gray-500"></i>
+                                </div>
+                                <div class="flex items-center border rounded-md p-3 hover:border-pink-500">
+                                    <input type="radio" name="payment" id="boleto" class="mr-3">
+                                    <label for="boleto" class="flex-grow">Boleto Bancário</label>
+                                    <i class="fas fa-barcode text-2xl text-gray-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="credit-card-form" class="mb-4">
+                            <h4 class="font-medium mb-2">Dados do Cartão</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">Número do Cartão</label>
+                                    <input type="text" placeholder="1234 5678 9012 3456" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Validade</label>
+                                        <input type="text" placeholder="MM/AA" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">CVV</label>
+                                        <input type="text" placeholder="123" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">Nome no Cartão</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-pink-500">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t pt-4 flex justify-between items-center">
+                            <span class="font-medium">Total a Pagar:</span>
+                            <span id="payment-total" class="font-bold text-lg">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button id="confirm-payment" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-500 text-base font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm">Confirmar Pagamento</button>
+                    <button id="cancel-payment" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                        <i class="fas fa-check text-green-600"></i>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Compra Finalizada!</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">Sua compra foi concluída com sucesso. Obrigado por escolher a Lumière!</p>
+                            <p class="text-sm text-gray-500 mt-2">O número do seu pedido é: <span class="font-medium">#LUM12345</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:justify-center">
+                    <button id="close-success" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-500 text-base font-medium text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Perfume Flor de Cerejeira",
+                price: 189.90,
+                oldPrice: 219.90,
+                category: "perfume",
+                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.8,
+                reviews: 124,
+                description: "Perfume floral suave com notas de cerejeira, jasmim e baunilha. Ideal para o dia a dia.",
+                details: "Frasco de 100ml | Duração média de 6 horas | Livre de álcool"
+            },
+            {
+                id: 2,
+                name: "Creme Hidratante Noturno",
+                price: 79.90,
+                oldPrice: 99.90,
+                category: "cream",
+                image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.9,
+                reviews: 215,
+                description: "Hidratação profunda para a pele durante a noite com extrato de babosa e vitamina E.",
+                details: "Pote de 50ml | Para todos os tipos de pele | Testado dermatologicamente"
+            },
+            {
+                id: 3,
+                name: "Paleta de Sombras Nude",
+                price: 129.90,
+                category: "makeup",
+                image: "src",
+                rating: 4.7,
+                reviews: 178,
+                description: "Paleta com 12 tons nude para criar looks naturais ou marcantes. Alta pigmentação.",
+                details: "12 cores | Vegano | Livre de parabenos"
+            },
+            {
+                id: 4,
+                name: "Óleo Corporal Relaxante",
+                price: 59.90,
+                category: "selfcare",
+                image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.6,
+                reviews: 92,
+                description: "Óleo com essência de lavanda para massagem e hidratação pós-banho. Aroma relaxante.",
+                details: "Frasco de 200ml | Vegano | Sem parabenos"
+            },
+            {
+                id: 5,
+                name: "Perfume Brisa do Mar",
+                price: 169.90,
+                oldPrice: 199.90,
+                category: "perfume",
+                image: "https://images.unsplash.com/photo-1615634265317-606c6f8e5244?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.5,
+                reviews: 87,
+                description: "Fragrância fresca com notas cítricas e marinhas. Perfeito para o verão.",
+                details: "Frasco de 100ml | Duração média de 5 horas | Livre de álcool"
+            },
+            {
+                id: 6,
+                name: "Protetor Solar FPS 50",
+                price: 89.90,
+                category: "cream",
+                image: "https://images.unsplash.com/photo-1556228579-8e6e2a0d67fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.8,
+                reviews: 203,
+                description: "Proteção solar avançada com textura leve e toque seco. Resistente à água.",
+                details: "Frasco de 60ml | Para todos os tipos de pele | Testado dermatologicamente"
+            },
+            {
+                id: 7,
+                name: "Batom Matte Vermelho",
+                price: 49.90,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.9,
+                reviews: 156,
+                description: "Batom matte de longa duração em tom vermelho clássico. Não resseca os lábios.",
+                details: "4g | Vegano | Duração de até 8 horas"
+            },
+            {
+                id: 8,
+                name: "Kit Relaxamento Aromático",
+                price: 149.90,
+                oldPrice: 179.90,
+                category: "selfcare",
+                image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                rating: 4.7,
+                reviews: 68,
+                description: "Kit com vela aromática, óleo para massagem e sais de banho. Aroma de lavanda e camomila.",
+                details: "Presenteável | Vegano | Ingredientes naturais"
+            }
+        ];
+
+        // Shopping cart
+        let cart = [];
+        let couponApplied = null;
+
+        // DOM elements
+        const productsGrid = document.getElementById('products-grid');
+        const cartModal = document.getElementById('cart-modal');
+        const cartItems = document.getElementById('cart-items');
+        const emptyCart = document.getElementById('empty-cart');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const paymentTotal = document.getElementById('payment-total');
+        const quickViewModal = document.getElementById('quick-view-modal');
+        const quickViewContent = document.getElementById('quick-view-content');
+        const paymentModal = document.getElementById('payment-modal');
+        const successModal = document.getElementById('success-modal');
+        const couponInput = document.getElementById('coupon');
+        const applyCouponBtn = document.getElementById('apply-coupon');
+        const couponMessage = document.getElementById('coupon-message');
+
+        // Available coupons
+        const coupons = [
+            { code: "LUMIERE10", discount: 10, type: "percentage" },
+            { code: "LUMIERE20", discount: 20, type: "percentage", minPurchase: 200 },
+            { code: "FREEGIFT", discount: 0, type: "freegift", gift: "Amostra Grátis" },
+            { code: "PRIMEIRO10", discount: 10, type: "fixed" }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            setupEventListeners();
+        });
+
+        // Render products
+        function renderProducts(filteredProducts = products) {
+            productsGrid.innerHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg overflow-hidden shadow-sm transition duration-300';
+                
+                let discountBadge = '';
+                if (product.oldPrice) {
+                    const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+                    discountBadge = `<div class="discount-badge">-${discount}%</div>`;
+                }
+                
+                productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${discountBadge}
+                        <button class="quick-view-btn absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-pink-500 px-4 py-2 rounded-full shadow-md opacity-0 transition-opacity duration-300" data-id="${product.id}">
+                            <i class="fas fa-eye mr-2"></i>Visualizar
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-lg mb-1">${product.name}</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="star-rating mr-2">
+                                ${renderStars(product.rating)}
+                            </div>
+                            <span class="text-sm text-gray-500">(${product.reviews})</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                ${product.oldPrice ? `<span class="text-sm text-gray-500 line-through mr-2">R$ ${product.oldPrice.toFixed(2)}</span>` : ''}
+                                <span class="text-lg font-bold text-pink-500">R$ ${product.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart bg-pink-500 hover:bg-pink-600 text-white p-2 rounded-full" data-id="${product.id}">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Show quick view button on hover
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.querySelector('.quick-view-btn').classList.remove('opacity-0');
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.querySelector('.quick-view-btn').classList.add('opacity-0');
+                });
+            });
+        }
+
+        // Render star rating
+        function renderStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Search toggle
+            const searchBtn = document.getElementById('search-btn');
+            const searchBar = document.getElementById('search-bar');
+            searchBtn.addEventListener('click', function() {
+                searchBar.classList.toggle('hidden');
+                if (!searchBar.classList.contains('hidden')) {
+                    searchBar.querySelector('input').focus();
+                }
+            });
+            
+            // Cart toggle
+            const cartBtn = document.getElementById('cart-btn');
+            const closeCart = document.getElementById('close-cart');
+            const continueShopping = document.getElementById('continue-shopping');
+            
+            cartBtn.addEventListener('click', openCart);
+            closeCart.addEventListener('click', closeCartModal);
+            continueShopping.addEventListener('click', closeCartModal);
+            
+            // Quick view buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('quick-view-btn') || e.target.closest('.quick-view-btn')) {
+                    const btn = e.target.classList.contains('quick-view-btn') ? e.target : e.target.closest('.quick-view-btn');
+                    const productId = parseInt(btn.getAttribute('data-id'));
+                    showQuickView(productId);
+                }
+                
+                if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+                    const btn = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
+                    const productId = parseInt(btn.getAttribute('data-id'));
+                    addToCart(productId);
+                }
+            });
+            
+            // Close quick view
+            const closeQuickView = document.getElementById('close-quick-view');
+            closeQuickView.addEventListener('click', function() {
+                quickViewModal.classList.add('hidden');
+            });
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(b => b.classList.remove('bg-pink-500', 'text-white'));
+                    filterButtons.forEach(b => b.classList.add('bg-white', 'hover:bg-gray-100'));
+                    this.classList.remove('bg-white', 'hover:bg-gray-100');
+                    this.classList.add('bg-pink-500', 'text-white');
+                    
+                    // Filter products
+                    const category = this.getAttribute('data-category');
+                    let filteredProducts = products;
+                    
+                    if (category !== 'all') {
+                        filteredProducts = products.filter(p => p.category === category);
+                    }
+                    
+                    renderProducts(filteredProducts);
+                });
+            });
+            
+            // Sort select
+            const sortSelect = document.getElementById('sort-select');
+            sortSelect.addEventListener('change', function() {
+                let sortedProducts = [...products];
+                const value = this.value;
+                
+                if (value === 'price-low') {
+                    sortedProducts.sort((a, b) => a.price - b.price);
+                } else if (value === 'price-high') {
+                    sortedProducts.sort((a, b) => b.price - a.price);
+                } else if (value === 'rating') {
+                    sortedProducts.sort((a, b) => b.rating - a.rating);
+                }
+                
+                renderProducts(sortedProducts);
+            });
+            
+            // Checkout button
+            const checkoutBtn = document.getElementById('checkout');
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length > 0) {
+                    closeCartModal();
+                    openPaymentModal();
+                }
+            });
+            
+            // Payment modal
+            const closePayment = document.getElementById('close-payment');
+            const cancelPayment = document.getElementById('cancel-payment');
+            const confirmPayment = document.getElementById('confirm-payment');
+            
+            closePayment.addEventListener('click', closePaymentModal);
+            cancelPayment.addEventListener('click', closePaymentModal);
+            confirmPayment.addEventListener('click', confirmOrder);
+            
+            // Payment method change
+            const paymentMethods = document.querySelectorAll('input[name="payment"]');
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    if (this.id === 'credit-card') {
+                        document.getElementById('credit-card-form').style.display = 'block';
+                    } else {
+                        document.getElementById('credit-card-form').style.display = 'none';
+                    }
+                });
+            });
+            
+            // Success modal
+            const closeSuccess = document.getElementById('close-success');
+            closeSuccess.addEventListener('click', function() {
+                successModal.classList.add('hidden');
+            });
+            
+            // Apply coupon
+            applyCouponBtn.addEventListener('click', applyCoupon);
+        }
+
+        // Show quick view
+        function showQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            quickViewContent.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/2">
+                        <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-xl font-bold mb-2">${product.name}</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="star-rating mr-2">
+                                ${renderStars(product.rating)}
+                            </div>
+                            <span class="text-sm text-gray-500">${product.rating.toFixed(1)} (${product.reviews} avaliações)</span>
+                        </div>
+                        ${product.oldPrice ? `
+                        <div class="mb-3">
+                            <span class="text-gray-500 line-through mr-2">R$ ${product.oldPrice.toFixed(2)}</span>
+                            <span class="text-xl font-bold text-pink-500">R$ ${product.price.toFixed(2)}</span>
+                            <span class="ml-2 bg-pink-100 text-pink-800 text-xs font-medium px-2 py-0.5 rounded">${Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}% OFF</span>
+                        </div>
+                        ` : `
+                        <div class="mb-3">
+                            <span class="text-xl font-bold text-pink-500">R$ ${product.price.toFixed(2)}</span>
+                        </div>
+                        `}
+                        <p class="text-gray-600 mb-4">${product.description}</p>
+                        <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                            <h4 class="font-medium mb-2">Detalhes do Produto</h4>
+                            <p class="text-sm text-gray-600">${product.details}</p>
+                        </div>
+                        <button class="add-to-cart w-full bg-pink-500 hover:bg-pink-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center" data-id="${product.id}">
+                            <i class="fas fa-shopping-cart mr-2"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            quickViewModal.classList.remove('hidden');
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>${product.name} adicionado ao carrinho!</span>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'translate-y-2', 'transition-all', 'duration-300');
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Update cart
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart modal
+            if (cart.length === 0) {
+                emptyCart.classList.remove('hidden');
+                cartItems.innerHTML = '';
+            } else {
+                emptyCart.classList.add('hidden');
+                
+                cartItems.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex items-center py-4 border-b';
+                    cartItem.innerHTML = `
+                        <div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden mr-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-sm text-gray-500">R$ ${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="decrease-quantity w-8 h-8 border rounded-full flex items-center justify-center" data-id="${item.id}">
+                                <i class="fas fa-minus text-xs"></i>
+                            </button>
+                            <span class="mx-2">${item.quantity}</span>
+                            <button class="increase-quantity w-8 h-8 border rounded-full flex items-center justify-center" data-id="${item.id}">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="ml-4 font-medium">
+                            R$ ${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                        <button class="remove-item ml-4 text-gray-400 hover:text-red-500" data-id="${item.id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.increase-quantity').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        const item = cart.find(item => item.id === id);
+                        if (item) item.quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        const item = cart.find(item => item.id === id);
+                        if (item) {
+                            item.quantity -= 1;
+                            if (item.quantity <= 0) {
+                                cart = cart.filter(i => i.id !== id);
+                            }
+                        }
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let total = subtotal;
+            
+            // Apply coupon if any
+            if (couponApplied) {
+                if (couponApplied.type === 'percentage') {
+                    total = subtotal * (1 - couponApplied.discount / 100);
+                } else if (couponApplied.type === 'fixed') {
+                    total = subtotal - couponApplied.discount;
+                }
+                // For free gift, no discount is applied to total
+            }
+            
+            cartSubtotal.textContent = `R$ ${subtotal.toFixed(2)}`;
+            cartTotal.textContent = `R$ ${total.toFixed(2)}`;
+            paymentTotal.textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        // Open cart
+        function openCart() {
+            cartModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        // Close cart modal
+        function closeCartModal() {
+            cartModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Open payment modal
+        function openPaymentModal() {
+            paymentModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        // Close payment modal
+        function closePaymentModal() {
+            paymentModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Confirm order
+        function confirmOrder() {
+            closePaymentModal();
+            
+            // Clear cart
+            cart = [];
+            couponApplied = null;
+            updateCart();
+            
+            // Show success modal
+            setTimeout(() => {
+                successModal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }, 500);
+        }
+
+        // Apply coupon
+        function applyCoupon() {
+            const couponCode = couponInput.value.trim();
+            const coupon = coupons.find(c => c.code === couponCode);
+            
+            if (!coupon) {
+                couponMessage.textContent = "Cupom inválido ou expirado.";
+                couponMessage.className = "text-sm mt-1 text-red-500";
+                couponMessage.classList.remove('hidden');
+                return;
+            }
+            
+            // Check minimum purchase if required
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            if (coupon.minPurchase && subtotal < coupon.minPurchase) {
+                couponMessage.textContent = `Este cupom requer um valor mínimo de compra de R$ ${coupon.minPurchase.toFixed(2)}.`;
+                couponMessage.className = "text-sm mt-1 text-red-500";
+                couponMessage.classList.remove('hidden');
+                return;
+            }
+            
+            // Apply coupon
+            couponApplied = coupon;
+            
+            if (coupon.type === 'freegift') {
+                couponMessage.textContent = `Cupom aplicado! Você ganhou: ${coupon.gift}.`;
+            } else if (coupon.type === 'percentage') {
+                couponMessage.textContent = `Cupom aplicado! ${coupon.discount}% de desconto.`;
+            } else {
+                couponMessage.textContent = `Cupom aplicado! R$ ${coupon.discount.toFixed(2)} de desconto.`;
+            }
+            
+            couponMessage.className = "text-sm mt-1 text-green-500";
+            couponMessage.classList.remove('hidden');
+            
+            // Update cart totals
+            updateCart();
+        }
+    </script>
+</body>
+</html>
