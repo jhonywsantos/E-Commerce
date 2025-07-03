@@ -8,7 +8,7 @@ Este é um projeto de **E-commerce minimalista e responsivo**, idealizado com fo
 
 ## 📸 Preview
 
-![Preview do E-commerce](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/TelaInicio.png)
+![Preview do E-commerce](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/GitHub/TelaInicio.png)
 
 > 💡 *Se a imagem acima não carregar, acesse o projeto diretamente pelo [GitHub Pages](https://jhonywsantos.github.io/E-Commerce/)*
 
@@ -29,13 +29,15 @@ Este é um projeto de **E-commerce minimalista e responsivo**, idealizado com fo
 
 - 🛍️ Visualização de produtos com layout responsivo
 - 🔎 Filtros por categoria e pesquisa de produtos
+![Produtos](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/GitHub/NossosProdutos.png)
 - 💳 Carrinho de compras dinâmico com opção de adicionar/remover itens
 - 🧾 Cálculo automático do total de compras
+![Carrinho](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/GitHub/Carrinho.png)
 - 📱 Design otimizado para mobile, tablet e desktop
 - ✨ Animações leves e navegação intuitiva
+![Avaliações](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/GitHub/Avalia%C3%A7%C3%B5es.png)
+![Contato](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/GitHub/Contato.png)
 
-![Produtos](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/assets/preview/photo2.png)
-![Carrinho](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/assets/preview/photo3.png)
 
 ---
 
