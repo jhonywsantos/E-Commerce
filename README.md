@@ -8,7 +8,7 @@ Este é um projeto de **E-commerce minimalista e responsivo**, idealizado com fo
 
 ## 📸 Preview
 
-![Preview do E-commerce](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/assets/preview/photo1.png)
+![Preview do E-commerce](https://raw.githubusercontent.com/jhonywsantos/E-Commerce/main/src/information/TelaInicio.png)
 
 > 💡 *Se a imagem acima não carregar, acesse o projeto diretamente pelo [GitHub Pages](https://jhonywsantos.github.io/E-Commerce/)*
 
