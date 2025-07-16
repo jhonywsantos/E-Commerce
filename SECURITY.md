@@ -11,7 +11,7 @@
 Apesar de ser um projeto de portfólio, valorizo o feedback sobre possíveis questões:
 
 1. **Canais de contato**:
-   - Email: jhonywsantos@example.com
+   - Email: jhonywictorsantos@gmail.com
    - Issues no GitHub (marcar como [SECURITY])
 
 2. **Escopo**:
